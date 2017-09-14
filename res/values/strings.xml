@@ -24,6 +24,7 @@
     <string name="pause">Pause</string>
     <string name="resume">Resume</string>
     <string name="reset">Reset</string>
+    <string name="chart">Chart</string>
     
     <!-- Settings -->
     <string name="settings">Settings</string>
