@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="name.bagi.levente.pedometer"
-      android:versionCode="5" android:versionName="1.4.0"
-      android:installLocation="auto">
+      android:versionCode="5" android:versionName="1.4.0">
       
     <uses-sdk android:minSdkVersion="4" />
 
@@ -18,6 +17,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".Settings"
+                android:label="@string/activity_settings">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ChartActivity"
                 android:label="@string/activity_settings">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

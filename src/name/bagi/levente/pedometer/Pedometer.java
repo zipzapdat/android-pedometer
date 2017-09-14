@@ -19,6 +19,11 @@
 package name.bagi.levente.pedometer;
 
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -38,7 +43,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
+import com.zipzap.sdk.ISyncManager;
+import com.zipzap.sdk.SyncFactory;
 
 public class Pedometer extends Activity {
 	private static final String TAG = "Pedometer";
@@ -63,6 +69,11 @@ public class Pedometer extends Activity {
     private float mMaintainInc;
     private boolean mQuitting = false; // Set when user selected Quit from menu, can be used by onPause, onStop, onDestroy
 
+    ///////////
+    private ISyncManager sync;
+    public static String BACKUP_DIR = "/data/data/name.bagi.levente.pedometer";
+    public static String BACKUP_FILE = "data.txt";
+    ///////////
     
     /**
      * True, when service is running.
@@ -81,6 +92,14 @@ public class Pedometer extends Activity {
         setContentView(R.layout.main);
         
         mUtils = Utils.getInstance();
+        
+        //////////
+        //Load data from ZipZapSDK
+        sync = SyncFactory.getSyncManger(this, BACKUP_DIR, BACKUP_FILE, false);
+        sync.getZipZapData();
+        /////////
+
+
     }
     
     @Override
@@ -175,6 +194,7 @@ public class Pedometer extends Activity {
         
         
         displayDesiredPaceOrSpeed();
+                
     }
     
     private void displayDesiredPaceOrSpeed() {
@@ -201,6 +221,7 @@ public class Pedometer extends Activity {
 
         super.onPause();
         savePaceSetting();
+
     }
 
     @Override
@@ -311,6 +332,7 @@ public class Pedometer extends Activity {
     private static final int MENU_PAUSE = 1;
     private static final int MENU_RESUME = 2;
     private static final int MENU_RESET = 3;
+    private static final int MENU_CHART = 4;
     
     /* Creates the menu items */
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -328,6 +350,9 @@ public class Pedometer extends Activity {
         menu.add(0, MENU_RESET, 0, R.string.reset)
         .setIcon(android.R.drawable.ic_menu_close_clear_cancel)
         .setShortcut('2', 'r');
+        menu.add(0, MENU_CHART, 0, R.string.chart)
+        .setIcon(android.R.drawable.ic_menu_gallery)
+        .setShortcut('3', 'c');
         menu.add(0, MENU_SETTINGS, 0, R.string.settings)
         .setIcon(android.R.drawable.ic_menu_preferences)
         .setShortcut('8', 's')
@@ -352,7 +377,13 @@ public class Pedometer extends Activity {
             case MENU_RESET:
                 resetValues(true);
                 return true;
+            case MENU_CHART:
+                plotChart();
+                return true;
             case MENU_QUIT:
+            	//Write values into a file 
+            	writeFile();
+            	
                 resetValues(false);
                 unbindStepService();
                 stopStepService();
@@ -363,7 +394,45 @@ public class Pedometer extends Activity {
         return false;
     }
  
-    // TODO: unite all into 1 type of message
+    private void plotChart() {
+    	Intent chartIntent = new Intent(this, ChartActivity.class);
+		startActivity(chartIntent);
+	}
+
+	private void writeFile() {
+		try {
+//			ContextWrapper cw = new ContextWrapper(this);
+//			File directory = cw.getDir("", Context.MODE_PRIVATE);
+			File file = new File(Pedometer.BACKUP_DIR+"/"+Pedometer.BACKUP_FILE);
+ 
+			// if file doesnt exists, then create it
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+ 
+			FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
+			BufferedWriter bw = new BufferedWriter(fw);
+			
+			String data = mStepValueView.getText()+",";
+			data += mPaceValueView.getText()+",";
+			data += mDistanceValueView.getText()+",";
+			data += mSpeedValueView.getText()+",";
+			data += mCaloriesValueView.getText()+"\n";
+			
+			bw.write(data);
+			bw.close();
+ 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+      ///////////
+      sync.putZipZapData();
+      ///////////        
+		
+	}
+
+	// TODO: unite all into 1 type of message
     private StepService.ICallback mCallback = new StepService.ICallback() {
         public void stepsChanged(int value) {
             mHandler.sendMessage(mHandler.obtainMessage(STEPS_MSG, value, 0));
