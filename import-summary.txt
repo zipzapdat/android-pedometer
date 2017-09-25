@@ -1,0 +1,112 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .gitignore
+* .idea/
+* .idea/compiler.xml
+* .idea/copyright/
+* .idea/copyright/profiles_settings.xml
+* .idea/misc.xml
+* .idea/workspace.xml
+* README.textile
+* app/
+* app/build.gradle
+* app/libs/
+* app/libs/Androidplot-core-0.5.0-release.jar
+* app/lint.xml
+* app/src/
+* app/src/main/
+* app/src/main/AndroidManifest.xml
+* app/src/main/java/
+* app/src/main/java/com/
+* app/src/main/java/com/zipzap/
+* app/src/main/java/com/zipzap/sdk/
+* app/src/main/java/com/zipzap/sdk/FileSyncManager.java
+* app/src/main/java/com/zipzap/sdk/ISyncManager.java
+* app/src/main/java/com/zipzap/sdk/SharedPrefSyncManager.java
+* app/src/main/java/com/zipzap/sdk/SyncFactory.java
+* app/src/main/java/name/
+* app/src/main/java/name/bagi/
+* app/src/main/java/name/bagi/levente/
+* app/src/main/java/name/bagi/levente/pedometer/
+* app/src/main/java/name/bagi/levente/pedometer/CaloriesNotifier.java
+* app/src/main/java/name/bagi/levente/pedometer/ChartActivity.java
+* app/src/main/java/name/bagi/levente/pedometer/DistanceNotifier.java
+* app/src/main/java/name/bagi/levente/pedometer/PaceNotifier.java
+* app/src/main/java/name/bagi/levente/pedometer/Pedometer.java
+* app/src/main/java/name/bagi/levente/pedometer/PedometerSettings.java
+* app/src/main/java/name/bagi/levente/pedometer/Settings.java
+* app/src/main/java/name/bagi/levente/pedometer/SimpleQueue.java
+* app/src/main/java/name/bagi/levente/pedometer/SpeakingTimer.java
+* app/src/main/java/name/bagi/levente/pedometer/SpeedNotifier.java
+* app/src/main/java/name/bagi/levente/pedometer/StepBuzzer.java
+* app/src/main/java/name/bagi/levente/pedometer/StepDetector.java
+* app/src/main/java/name/bagi/levente/pedometer/StepDisplayer.java
+* app/src/main/java/name/bagi/levente/pedometer/StepListener.java
+* app/src/main/java/name/bagi/levente/pedometer/StepService.java
+* app/src/main/java/name/bagi/levente/pedometer/Utils.java
+* app/src/main/java/name/bagi/levente/pedometer/preferences/
+* app/src/main/java/name/bagi/levente/pedometer/preferences/BodyWeightPreference.java
+* app/src/main/java/name/bagi/levente/pedometer/preferences/EditMeasurementPreference.java
+* app/src/main/java/name/bagi/levente/pedometer/preferences/StepLengthPreference.java
+* app/src/main/res/
+* app/src/main/res/drawable/
+* app/src/main/res/drawable/ic_notification.png
+* app/src/main/res/drawable/icon.png
+* app/src/main/res/drawable/line40.png
+* app/src/main/res/layout/
+* app/src/main/res/layout/chart.xml
+* app/src/main/res/layout/main.xml
+* app/src/main/res/values-large/
+* app/src/main/res/values-large/dimens.xml
+* app/src/main/res/values-small/
+* app/src/main/res/values-small/dimens.xml
+* app/src/main/res/values/
+* app/src/main/res/values/arrays.xml
+* app/src/main/res/values/colors.xml
+* app/src/main/res/values/dimens.xml
+* app/src/main/res/values/strings.xml
+* app/src/main/res/xml/
+* app/src/main/res/xml/preferences.xml
+* build.gradle
+* default.properties
+* gradle/
+* gradle/wrapper/
+* gradle/wrapper/gradle-wrapper.jar
+* gradle/wrapper/gradle-wrapper.properties
+* gradlew
+* gradlew.bat
+* settings.gradle
+* test_cases.txt
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app/src/main/AndroidManifest.xml
+* libs/Androidplot-core-0.5.0-release.jar => app/libs/Androidplot-core-0.5.0-release.jar
+* lint.xml => app/lint.xml
+* res/ => app/src/main/res/
+* src/ => app/src/main/java/
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
