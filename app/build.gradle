@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "name.bagi.levente.pedometer"
-        minSdkVersion 4
-        targetSdkVersion 4
+        minSdkVersion 8
+        targetSdkVersion 8
     }
 
     buildTypes {
@@ -19,5 +19,6 @@ android {
 }
 
 dependencies {
+    compile project(':zipzapsdk')
     compile files('libs/Androidplot-core-0.5.0-release.jar')
 }
